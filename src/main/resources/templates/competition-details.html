@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Competition details</title>
+    <link rel="stylesheet" th:href="@{/stylesheets/home.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <aside th:insert="/home.html :: sidenav"></aside>
+    <header th:insert="/home.html :: header"></header>
+
+    <div class="main">
+        <h2 th:text="${competition.showName}"></h2>
+
+        <form action="#" th:action="@{'/competition/'+${competition.id}}" th:object="${horse}" method="post" class="join-competition">
+            <label>Join this competition with: </label>
+            <!--<select th:field="*{horse}">-->
+                <!--<option th:each="horse : ${horses}"-->
+                        <!--th:value="${horse}"-->
+                        <!--th:text="#{${horse}}"></option>-->
+            <!--</select>-->
+            <select class="mdb-select md-form">
+                <option value="" disabled selected>Choose a horse</option>
+                <option th:each="horse : ${horses}"
+                th:value="${horse.name}"
+                th:text="${horse.name}"></option>
+            </select>
+
+            <input class="btn btn-primary submit-btn" name="submit" type="submit" value="submit"/>
+        </form>
+
+        <div class="table-responsive">
+            <table id="participationsList" class="table">
+                <thead>
+                <tr>
+                    <th>Horse</th>
+                    <th>Rider</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="participation, rowStat: ${participations}"
+                    th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                    <td th:text="${participation.horse.name}"></td>
+                    <!--<td th:text="${participation.rider.person.firstName} + ' ' + ${participation.rider.person.lastName}"></td>-->
+                    <td th:text="${participation.rider.person.getName()}"></td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td>32</td>-->
+                    <!--<td>Pola</td>-->
+                    <!--<td>John Doe</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>33</td>-->
+                    <!--<td>Kajtek</td>-->
+                    <!--<td>Alice Key</td>-->
+                <!--</tr>-->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
