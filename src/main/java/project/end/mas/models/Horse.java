@@ -14,8 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "discipline")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "discipline")
 public class Horse {
 
     @Id
@@ -39,9 +39,9 @@ public class Horse {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
-    private static int minActiveYear;
-
-    private static int retiringAge;
+//    private static int minActiveYear;
+//
+//    private static int retiringAge;
 
     @ManyToOne
     @JoinColumn(name = "id_owner")

@@ -2,6 +2,7 @@ package project.end.mas.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import project.end.mas.helpers.CompetitionState;
 import project.end.mas.models.Competition;
 import project.end.mas.repositories.CompetitionRepository;
 
@@ -18,15 +19,15 @@ public class CompetitionService {
 
 
     public Iterable<Competition> showOpenCompetitions() throws Exception {
-//        if (checkOpen()) {
-//            return StreamSupport
-//                    .stream(competitionRepository.findAll().spliterator(), false)
-//                    .filter(competition -> competition.getState().equals("open"))
-//                    .collect(Collectors.toList());
-//        } else {
-//            throw new Exception("there are no open competitions!");
-//        }
-        return competitionRepository.findAll();
+        if (checkOpen()) {
+            return StreamSupport
+                    .stream(competitionRepository.findAll().spliterator(), false)
+                    .filter(competition -> competition.getState().equals(CompetitionState.OPEN))
+                    .collect(Collectors.toList());
+        } else {
+            throw new Exception("there are no open competitions!");
+        }
+//        return competitionRepository.findAll();
     }
 
 
@@ -34,7 +35,7 @@ public class CompetitionService {
     public boolean checkOpen() {
         return StreamSupport
                 .stream(competitionRepository.findAll().spliterator(), false)
-                .anyMatch(competition -> competition.getState().equals("open"));
+                .anyMatch(competition -> competition.getState().equals(CompetitionState.OPEN));
     }
 
 //    tries to find a competition by a given id
@@ -44,12 +45,16 @@ public class CompetitionService {
 
 //    cancels competition
     public void cancel(Long idCompetition) {
-        competitionRepository.findById(idCompetition).ifPresent(competition -> competition.setState("cancel"));
+        competitionRepository
+                .findById(idCompetition)
+                .ifPresent(competition -> competition.setState(CompetitionState.CANCELLED));
     }
 
 //    opens competition for a registration process
     public void open(Long idCompetition) {
-        competitionRepository.findById(idCompetition).ifPresent(competition -> competition.setState("open"));
+        competitionRepository
+                .findById(idCompetition)
+                .ifPresent(competition -> competition.setState(CompetitionState.OPEN));
 
     }
 }

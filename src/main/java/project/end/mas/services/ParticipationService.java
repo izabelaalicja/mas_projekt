@@ -6,6 +6,7 @@ import project.end.mas.models.Competition;
 import project.end.mas.models.Horse;
 import project.end.mas.models.Participation;
 import project.end.mas.models.Rider;
+import project.end.mas.repositories.HorseRepository;
 import project.end.mas.repositories.ParticipationRepository;
 import project.end.mas.repositories.RiderRepository;
 
@@ -19,10 +20,11 @@ public class ParticipationService {
 
     private final ParticipationRepository participationRepository;
     private final RiderRepository riderRepository;
+    private final HorseRepository horseRepository;
     private final CompetitionService competitionService;
+    private final RiderService riderService;
 
-
-    //    get participations in selected competition
+//    get participations in selected competition
     public List<Participation> showParticipants(long idCompetition) {
         return StreamSupport
                 .stream(participationRepository.findAll().spliterator(), false)
@@ -30,12 +32,19 @@ public class ParticipationService {
                 .collect(Collectors.toList());
     }
 
-    public void joinCompetition(Long idCompetition, Horse horse) {
+//    method to add new rider and horse in a chosen competition
+    public void joinCompetition(Long idCompetition, Long idHorse) throws Exception {
         //TODO logged rider (hardcoded)
         Rider loggedRider = riderRepository.findById(1L).orElse(null);
         Competition competition = competitionService.findCompetitionById(idCompetition).orElse(null);
+        Horse horse = horseRepository.findById(idHorse).orElse(null);
 
-        participationRepository.save(new Participation(loggedRider, horse, competition));
+//        if (riderService.checkStars(competition, loggedRider)) {
+            Participation participation = new Participation(loggedRider, horse, competition);
+            participationRepository.save(participation);
+//        } else {
+//            throw new Exception("rider cannot join this competition. Level is too high!");
+//        }
     }
 
 }

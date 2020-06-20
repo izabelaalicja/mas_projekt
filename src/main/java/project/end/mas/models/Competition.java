@@ -3,6 +3,7 @@ package project.end.mas.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import project.end.mas.helpers.CompetitionState;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,12 +15,13 @@ import java.util.List;
 @Setter
 public class Competition {
 
-    public Competition(String showName, LocalDate startDate, LocalDate endDate, int budget, int numberOfStars) {
+    public Competition(String showName, LocalDate startDate, LocalDate endDate, int budget, int numberOfStars, CompetitionState state) {
         this.showName = showName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
         this.numberOfStars = numberOfStars;
+        this.state = state;
     }
 
     @Id
@@ -41,7 +43,9 @@ public class Competition {
     @Column(name = "number_of_stars")
     private int numberOfStars;
 
-    private String state;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(255) default 'OPEN'")
+    private CompetitionState state;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "competition", orphanRemoval = true)
     private List<Participation> participations;

@@ -99,3 +99,111 @@ body {
     width: fit-content;
 
 }
+
+.overlay {
+    /*position: fixed;*/
+    /*top: 50%;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*background: rgba(0, 0, 0, 0.7);*/
+    /*transition: opacity 500ms;*/
+    /*visibility: visible;*/
+    /*opacity: 1;*/
+}
+
+/*.overlay:target {*/
+    /*visibility: hidden;*/
+    /*opacity: 0;*/
+/*}*/
+
+.alert-alert-error {
+    background-color: #f25246; /* Red */
+    color: white;
+    /*background: #fff;*/
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30%;
+    position: absolute;
+    transition: all 5s ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.alert-alert-success {
+    background-color: #10b58f;
+    color: white;
+    /*background: #fff;*/
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30%;
+    position: absolute;
+    transition: all 5s ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: lightgray !important;
+    cursor: pointer !important;
+}
+
+.alert-text {
+    color: #f25246 !important;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 90px;
+}
+
+.btn-link {
+    height: 30px;
+    margin-left: 20px;
+    background-color:transparent;
+    color: #a3764b !important;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #a3764b;
+    border-radius: 7px;
+}
+
+.btn-link:hover {
+    height: 30px;
+    margin-left: 20px;
+    background-color:transparent;
+    color: #a3764b !important;
+    opacity: 0.5;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #a3764b !important;
+    border-radius: 7px !important;
+}
+
+@media screen and (max-width: 700px){
+    .alert-alert-error {
+        width: 70%;
+    }
+
+    .alert-alert-success {
+        width: 70%;
+    }
+}

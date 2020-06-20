@@ -20,18 +20,27 @@
     <div class="main">
         <h2 th:text="${competition.showName}"></h2>
 
-        <form action="#" th:action="@{'/competition/'+${competition.id}}" th:object="${horse}" method="post" class="join-competition">
+        <a th:if="${msgHorses=='horses-none'}" class="alert-text">No available horses to join with!</a>
+        <a th:if="${msgHorses=='horses-none'}" th:href="@{/competitions}" class="btn-link">Go back to competitions</a>
+        <br>
+
+        <form th:unless="${msgHorses=='horses-none'}" th:action="@{'/competition/'+${competition.id}}"
+
+              method="post"
+              class="join-competition">
             <label>Join this competition with: </label>
             <!--<select th:field="*{horse}">-->
                 <!--<option th:each="horse : ${horses}"-->
                         <!--th:value="${horse}"-->
                         <!--th:text="#{${horse}}"></option>-->
             <!--</select>-->
-            <select class="mdb-select md-form">
-                <option value="" disabled selected>Choose a horse</option>
+            <select th:name="newHorse" class="mdb-select md-form">
+
+                <!--<option value=0 disabled selected>Choose a horse</option>-->
                 <option th:each="horse : ${horses}"
-                th:value="${horse.name}"
-                th:text="${horse.name}"></option>
+                        th:value="${horse.id}"
+                        th:text="${horse.name}">
+                </option>
             </select>
 
             <input class="btn btn-primary submit-btn" name="submit" type="submit" value="submit"/>
@@ -40,32 +49,37 @@
         <div class="table-responsive">
             <table id="participationsList" class="table">
                 <thead>
-                <tr>
-                    <th>Horse</th>
-                    <th>Rider</th>
-                </tr>
+                    <tr>
+                        <th>Horse</th>
+                        <th>Rider</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr th:each="participation, rowStat: ${participations}"
-                    th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                    <td th:text="${participation.horse.name}"></td>
-                    <!--<td th:text="${participation.rider.person.firstName} + ' ' + ${participation.rider.person.lastName}"></td>-->
-                    <td th:text="${participation.rider.person.getName()}"></td>
-                </tr>
-                <!--<tr>-->
-                    <!--<td>32</td>-->
-                    <!--<td>Pola</td>-->
-                    <!--<td>John Doe</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>33</td>-->
-                    <!--<td>Kajtek</td>-->
-                    <!--<td>Alice Key</td>-->
-                <!--</tr>-->
+                    <tr th:each="participation, rowStat: ${participations}"
+                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                        <td th:text="${participation.horse.name}"></td>
+                        <!--<td th:text="${participation.rider.person.firstName} + ' ' + ${participation.rider.person.lastName}"></td>-->
+                        <td th:text="${participation.rider.person.getName()}"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
     </div>
+
+    <!--<div th:if="${msg}" id="popup1" class="overlay">-->
+        <div th:if="${msg}" th:class="${'alert-'+alertClass}">
+            <a th:if="${msg=='failed'}">You don't have enough stars to join this competition!</a>
+            <a th:if="${msg=='failed'}" class="closebtn" th:href="@{/competitions}" onclick="this.parentElement.style.display='none';">
+                &times;
+            </a>
+
+            <a th:if="${msg=='success'}">You successfully joined new competition.</a>
+            <a th:if="${msg=='success'}" class="closebtn" onclick="this.parentElement.style.display='none';">
+                &times;
+            </a>
+        </div>
+    <!--</div>-->
+
 </body>
 </html>
