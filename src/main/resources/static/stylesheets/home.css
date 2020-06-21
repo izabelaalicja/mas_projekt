@@ -43,7 +43,7 @@ body {
 .header {
     display: grid;
     grid-template-columns: 1fr min-content;
-    margin-left: 180px; /* Same as the width of the sidenav */
+    margin-left: 180px;
     padding: 0 10px;
     height: 60px;
     border-bottom: 1px solid #10b58f;
@@ -52,12 +52,7 @@ body {
 
 .header .login-btn {
     background-color: #edb75a;
-    /*padding: 10px;*/
-    /*border-radius: 7px;*/
     height: fit-content;
-    /*width: max-content;*/
-    /*margin-right: 30px;*/
-    /*font-size: initial;*/
 }
 
 .header .login-btn:hover{
@@ -67,7 +62,7 @@ body {
 }
 
 .main {
-    margin-left: 180px; /* Same as the width of the sidenav */
+    margin-left: 180px;
     padding: 0 10px;
 }
 
@@ -100,27 +95,9 @@ body {
 
 }
 
-.overlay {
-    /*position: fixed;*/
-    /*top: 50%;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*background: rgba(0, 0, 0, 0.7);*/
-    /*transition: opacity 500ms;*/
-    /*visibility: visible;*/
-    /*opacity: 1;*/
-}
-
-/*.overlay:target {*/
-    /*visibility: hidden;*/
-    /*opacity: 0;*/
-/*}*/
-
 .alert-alert-error {
-    background-color: #f25246; /* Red */
+    background-color: #f25246;
     color: white;
-    /*background: #fff;*/
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
@@ -135,7 +112,6 @@ body {
 .alert-alert-success {
     background-color: #10b58f;
     color: white;
-    /*background: #fff;*/
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
@@ -155,10 +131,10 @@ body {
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    color: #333;
+    color: white !important;
+    transform: translate(0, -50%);
 }
 
-/* When moving the mouse over the close button */
 .closebtn:hover {
     color: lightgray !important;
     cursor: pointer !important;

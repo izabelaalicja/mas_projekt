@@ -32,8 +32,6 @@ public class JoinCompetitionController {
     private final RiderService riderService;
     private final RiderRepository riderRepository;
 
-    private Rider loggedRider = riderRepository.findById(1L).orElse(null);
-
     /**
      * <p> method showing all open competitions</p>
      * @return view competition-list.html
@@ -60,7 +58,6 @@ public class JoinCompetitionController {
 
         Competition competition = competitionService.findCompetitionById(id)
                 .orElseThrow(() -> new NoCompetitionException("given competition id doesn't exists"));
-
         List<Participation> participations = participationService.showParticipants(id);
         List<Horse> horses = horseService.showActiveHorses(competition);
 
@@ -85,6 +82,7 @@ public class JoinCompetitionController {
         redirectAttributes.addFlashAttribute("alertClass", "alert-error");
 
         Competition competition = competitionService.findCompetitionById(id).orElse(null);
+        Rider loggedRider = riderRepository.findById(1L).orElse(null);
 
         if (!riderService.checkStars(competition, loggedRider)) {
             return "redirect:/competition/{id}";
