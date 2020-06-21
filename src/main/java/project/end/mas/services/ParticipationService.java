@@ -22,7 +22,6 @@ public class ParticipationService {
     private final RiderRepository riderRepository;
     private final HorseRepository horseRepository;
     private final CompetitionService competitionService;
-    private final RiderService riderService;
 
 //    get participations in selected competition
     public List<Participation> showParticipants(long idCompetition) {
@@ -33,18 +32,14 @@ public class ParticipationService {
     }
 
 //    method to add new rider and horse in a chosen competition
-    public void joinCompetition(Long idCompetition, Long idHorse) throws Exception {
+    public void joinCompetition(Long idCompetition, Long idHorse) {
         //TODO logged rider (hardcoded)
         Rider loggedRider = riderRepository.findById(1L).orElse(null);
         Competition competition = competitionService.findCompetitionById(idCompetition).orElse(null);
         Horse horse = horseRepository.findById(idHorse).orElse(null);
 
-//        if (riderService.checkStars(competition, loggedRider)) {
-            Participation participation = new Participation(loggedRider, horse, competition);
-            participationRepository.save(participation);
-//        } else {
-//            throw new Exception("rider cannot join this competition. Level is too high!");
-//        }
+        Participation participation = new Participation(loggedRider, horse, competition);
+        participationRepository.save(participation);
     }
 
 }
