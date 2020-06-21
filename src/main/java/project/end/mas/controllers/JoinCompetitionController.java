@@ -34,7 +34,10 @@ public class JoinCompetitionController {
 
     private Rider loggedRider = riderRepository.findById(1L).orElse(null);
 
-
+    /**
+     * <p> method showing all open competitions</p>
+     * @return view competition-list.html
+     */
     @GetMapping("/competitions")
     public String getCompetitions(Model model) {
 
@@ -47,6 +50,11 @@ public class JoinCompetitionController {
         return "competition-list.html";
     }
 
+    /**
+     * <p> method showing participants in a chosen competition
+     * and option to join it with a specific horse</p>
+     * @return view competition-details.html
+     */
     @GetMapping("/competition/{id}")
     public String getCompetitionDetails(Model model, @PathVariable long id) throws NoCompetitionException {
 
@@ -66,6 +74,10 @@ public class JoinCompetitionController {
         return "competition-details.html";
     }
 
+    /**
+     * <p> method to add new participation
+     * @return view competition-details.html
+     */
     @PostMapping("/competition/{id}")
     public String joinCompetition(@PathVariable long id, @RequestParam(value = "newHorse", required = false) Long newHorse, RedirectAttributes redirectAttributes) {
 

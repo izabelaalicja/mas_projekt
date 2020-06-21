@@ -19,8 +19,11 @@ public class HorseService {
 
     private final ParticipationRepository participationRepository;
 
-
-//        horses that are active and don't participate yet in selected competition
+    /**
+     * <p> method showing horses that are active and don't participate yet in a selected competition </p>
+     * @param competition selected competition
+     * @return list of horses
+     */
     public List<Horse> showActiveHorses(Competition competition) {
         return StreamSupport
                 .stream(horseRepository.findAll().spliterator(), false)
@@ -29,6 +32,12 @@ public class HorseService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * <p> method checking if a selected horse takes part in a chosen competition already </p>
+     * @param competition selected competition
+     * @param horse selected horse
+     * @return true if selected horse already takes part in this competition
+     */
     private boolean horseInCompetition(Competition competition, Horse horse) {
         return StreamSupport
                 .stream(participationRepository.findAll().spliterator(), false)

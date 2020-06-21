@@ -23,7 +23,11 @@ public class ParticipationService {
     private final HorseRepository horseRepository;
     private final CompetitionService competitionService;
 
-//    get participations in selected competition
+    /**
+     * <p> method showing all participations in selected competition</p>
+     * @param idCompetition id of selected competition
+     * @return list of participants in a chosen competition
+     */
     public List<Participation> showParticipants(long idCompetition) {
         return StreamSupport
                 .stream(participationRepository.findAll().spliterator(), false)
@@ -31,7 +35,11 @@ public class ParticipationService {
                 .collect(Collectors.toList());
     }
 
-//    method to add new rider and horse in a chosen competition
+    /**
+     * <p> method adding new rider and horse in a chosen competition</p>
+     * @param idCompetition id of selected competition
+     * @param idHorse id of selected horse
+     */
     public void joinCompetition(Long idCompetition, Long idHorse) {
         //TODO logged rider (hardcoded)
         Rider loggedRider = riderRepository.findById(1L).orElse(null);
