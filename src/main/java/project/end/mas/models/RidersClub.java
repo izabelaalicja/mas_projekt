@@ -8,11 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Entity
+@Entity(name = "riders_club")
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "riders_club")
 public class RidersClub {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

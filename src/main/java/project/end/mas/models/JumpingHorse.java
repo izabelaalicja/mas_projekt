@@ -16,4 +16,6 @@ public class JumpingHorse extends Horse {
     @Column(name = "highest_jump")
     private float highestJump;
 
+    private static int minActiveYear = 3;
+
 }

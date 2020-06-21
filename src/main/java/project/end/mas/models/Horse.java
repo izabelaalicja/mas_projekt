@@ -1,6 +1,5 @@
 package project.end.mas.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,14 +43,9 @@ public class Horse {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
-//    private static int minActiveYear;
-//
-//    private static int retiringAge;
-
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_owner")
-    @JsonManagedReference
     private Owner owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "horse")

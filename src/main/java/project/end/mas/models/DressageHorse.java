@@ -16,4 +16,6 @@ public class DressageHorse extends Horse {
     @Column(name = "highest_points_result")
     private int highestPointsResult;
 
+    private static int minActiveYear = 2;
+
 }

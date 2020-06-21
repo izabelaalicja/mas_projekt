@@ -14,8 +14,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class Person {
 
-//    private static Set<Rider> allRiders = new HashSet<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_person")
