@@ -3,8 +3,10 @@ package project.end.mas.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 public class Rider {
-
 
     public Rider(Person person, int feiId, int highestClassAllowed, RidersClub ridersClub) {
         this.feiId = feiId;
@@ -26,9 +27,12 @@ public class Rider {
     @Column(name = "id_rider")
     private long id;
 
-    @Column(name = "fei_id")
+    @NotNull
+    @Column(name = "fei_id", unique = true)
     private int feiId;
 
+    @NotNull
+    @Range(min = 1, max = 4)
     @Column(name = "highest_class_allowed")
     private int highestClassAllowed;
 
@@ -45,20 +49,6 @@ public class Rider {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rider")
     private List<Training> trainings;
 
-
-//    private static Rider createRider(Person person, int feiId, int highestClassAllowed, RidersClub ridersClub) throws Exception {
-//        if (person == null) {
-//            throw new Exception("The given person does not exists!");
-//        }
-//
-//        //Create a new part
-//        Rider rider = new Rider(person, feiId, highestClassAllowed, ridersClub);
-//
-//        //Add to the whole
-//        person.addRider(rider);
-//
-//        return rider;
-//    }
 
 
     public void addParticipation(Participation participation) {

@@ -3,6 +3,7 @@ package project.end.mas.models;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,9 +17,7 @@ public class Owner {
     @Column(name = "id_owner")
     private long id;
 
-    @Column(name = "company_name")
-    private String companyName;
-
+    @NotNull
     @Column(name = "account_number")
     private String accountNumber;
 

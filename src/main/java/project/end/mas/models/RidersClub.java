@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,10 @@ public class RidersClub {
     @Column(name = "id_riders_club")
     private long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String color;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ridersClub")

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -18,11 +19,14 @@ public class Expense {
     @Column(name = "id_expense")
     private long id;
 
+    @NotNull
     private double cost;
 
     @Column(name = "billing_date")
     private LocalDate billingDate;
 
+    @NotNull
+    @Column(unique = true)
     private int number;
 
     @ManyToOne

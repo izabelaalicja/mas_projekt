@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -23,14 +24,18 @@ public class Horse {
     @Column(name = "id_horse")
     private long id;
 
+    @NotNull
     private String name;
 
     private String nickname;
 
+    @NotNull
     private LocalDate birthday;
 
+    @NotNull
     private String color;
 
+    @NotNull
     @Column(name = "is_active")
     private boolean isActive;
 
@@ -43,6 +48,7 @@ public class Horse {
 //
 //    private static int retiringAge;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_owner")
     @JsonManagedReference

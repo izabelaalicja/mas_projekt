@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,10 @@ public class TrainingAction {
     @Column(name = "id_training_action")
     private long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private int level;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainingAction")
