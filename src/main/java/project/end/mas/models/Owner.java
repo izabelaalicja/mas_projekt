@@ -27,9 +27,8 @@ public class Owner {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Expense> expenses;
 
-//    @OneToOne(fetch = FetchType.LAZY,  optional = false)
-//    @JoinColumn(name = "id_person")
-//    private Person person;
+    @OneToOne(mappedBy = "owner")
+    private Person person;
 
 
     public void addHorse(Horse horse) {

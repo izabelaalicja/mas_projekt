@@ -18,7 +18,7 @@
     <div class="main">
         <h2>Competitions</h2>
 
-        <a th:if="${msgCompetitions=='competitions-none'}" class="alert-text">You don't have any competitions!</a>
+        <a th:if="${msgCompetitions=='competitions-none'}" class="alert-text">You don't have any open competition!</a>
 
         <div th:unless="${msgCompetitions=='competitions-none'}" class="table-responsive">
             <table id="competitionsList" class="table">

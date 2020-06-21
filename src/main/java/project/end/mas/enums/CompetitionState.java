@@ -1,4 +1,4 @@
-package project.end.mas.helpers;
+package project.end.mas.enums;
 
 public enum CompetitionState {
     PLANNED,

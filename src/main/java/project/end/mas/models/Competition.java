@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
-import project.end.mas.helpers.CompetitionState;
+import project.end.mas.enums.CompetitionState;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

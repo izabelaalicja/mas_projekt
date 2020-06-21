@@ -36,6 +36,10 @@ public class Person {
     @JoinColumn(name = "id_rider")
     private Rider rider;
 
+    @OneToOne
+    @JoinColumn(name = "id_owner")
+    private Owner owner;
+
 
     @Transient
     public String getName() {

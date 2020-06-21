@@ -2,7 +2,7 @@ package project.end.mas.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import project.end.mas.helpers.CompetitionState;
+import project.end.mas.enums.CompetitionState;
 import project.end.mas.models.Competition;
 import project.end.mas.repositories.CompetitionRepository;
 

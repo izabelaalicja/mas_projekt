@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.end.mas.exceptions.NoCompetitionException;
-import project.end.mas.helpers.Message;
+import project.end.mas.enums.Message;
 import project.end.mas.models.Competition;
 import project.end.mas.models.Horse;
 import project.end.mas.models.Participation;
@@ -20,6 +20,7 @@ import project.end.mas.services.ParticipationService;
 import project.end.mas.services.RiderService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,6 +33,13 @@ public class JoinCompetitionController {
     private final RiderService riderService;
     private final RiderRepository riderRepository;
 
+    @GetMapping("/")
+    public String getHome(Model model) {
+        Optional<Rider> loggedRider = riderRepository.findById(1L);
+        model.addAttribute("rider", loggedRider.get());
+        return "home.html";
+    }
+
     /**
      * <p> method showing all open competitions</p>
      * @return view competition-list.html
@@ -40,9 +48,12 @@ public class JoinCompetitionController {
     public String getCompetitions(Model model) {
 
         if (!competitionService.checkOpen())
-            model.addAttribute("msgCompetitions", Message.COMPETITIONS_NONE);
+            model.addAttribute("msgCompetitions", Message.COMPETITIONS_NONE.getMessage());
 
         Iterable<Competition> openCompetitions = competitionService.showOpenCompetitions();
+
+        Optional<Rider> loggedRider = riderRepository.findById(1L);
+        model.addAttribute("rider", loggedRider.get());
 
         model.addAttribute("competitions", openCompetitions);
         return "competition-list.html";
@@ -63,6 +74,9 @@ public class JoinCompetitionController {
 
         if (horses.isEmpty())
             model.addAttribute("msgHorses", Message.HORSES_NONE.getMessage());
+
+        Optional<Rider> loggedRider = riderRepository.findById(1L);
+        model.addAttribute("rider", loggedRider.get());
 
         model.addAttribute("competition", competition);
         model.addAttribute("participations", participations);

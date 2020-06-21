@@ -15,7 +15,8 @@
 <body>
     <aside th:fragment="sidenav" class="sidenav">
         <img th:src="@{/images/horse-logo2.png}"/>
-        <a class="account" th:href="@{/}">Hi, rider Polo</a>
+        <!--<a class="account" th:href="@{/}" th:text="${rider.getPerson().getFirstName()}"></a>-->
+        <a class="account" th:href="@{/}" th:text="${'Hi, rider ' + rider.getPerson().getFirstName()}"></a>
         <a href="#horses">Horses</a>
         <a href="#trainings">Trainings</a>
         <a th:href="@{/competitions}" id="competitions">Competitons</a>

@@ -18,6 +18,6 @@ public class RiderService {
     public boolean checkStars(Competition competition, Rider rider) {
         int competitionStars = competition.getNumberOfStars();
         int riderStars = rider.getHighestClassAllowed();
-        return riderStars > competitionStars;
+        return riderStars >= competitionStars;
     }
 }
