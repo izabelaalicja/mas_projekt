@@ -14,8 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "discipline")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "discipline", discriminatorType = DiscriminatorType.STRING)
 public class Horse {
 
     @Id
