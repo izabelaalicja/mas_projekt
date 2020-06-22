@@ -35,7 +35,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="competition, rowStat: ${competitions}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                        th:style="${rowStat.odd} ? 'color: gray' : 'color: black;'">
                         <td th:text="${competition.showName}"></td>
                         <td th:text="${competition.startDate}"></td>
                         <td th:text="${competition.endDate}"></td>

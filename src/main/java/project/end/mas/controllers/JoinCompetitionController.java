@@ -23,7 +23,6 @@ import project.end.mas.services.RiderService;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class JoinCompetitionController {

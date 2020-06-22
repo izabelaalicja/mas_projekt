@@ -46,13 +46,15 @@
                 <thead>
                     <tr>
                         <th>Horse</th>
+                        <th>Owner</th>
                         <th>Rider</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="participation, rowStat: ${participations}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                        th:style="${rowStat.odd} ? 'color: gray' : 'color: black;'">
                         <td th:text="${participation.horse.name}"></td>
+                        <td th:text="${participation.horse.owner.person.getName()}"></td>
                         <td th:text="${participation.rider.person.getName()}"></td>
                     </tr>
                 </tbody>
@@ -68,7 +70,7 @@
                 &times;
             </a>
 
-            <a th:if="${msg=='success'}">You successfully joined new competition.</a>
+            <a th:if="${msg=='success'}">You've successfully joined new competition.</a>
             <a th:if="${msg=='success'}" class="closebtn" onclick="this.parentElement.style.display='none';">
                 &times;
             </a>
