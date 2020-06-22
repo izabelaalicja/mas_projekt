@@ -3,6 +3,7 @@ package project.end.mas.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Range;
 import project.end.mas.enums.CompetitionState;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@DynamicUpdate
 public class Competition {
 
     public Competition(String showName, LocalDate startDate, LocalDate endDate, int budget, int numberOfStars, CompetitionState state) {

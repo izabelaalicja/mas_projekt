@@ -24,10 +24,12 @@ public class Owner {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Horse> horses;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    //parnet-child association (orphanRemoval)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", orphanRemoval = true)
     private List<Expense> expenses;
 
-    @OneToOne(mappedBy = "owner")
+    //parnet-child association (orphanRemoval)
+    @OneToOne(mappedBy = "owner", orphanRemoval = true)
     private Person person;
 
 

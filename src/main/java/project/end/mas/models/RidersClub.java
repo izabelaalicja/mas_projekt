@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class RidersClub {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_riders_club")

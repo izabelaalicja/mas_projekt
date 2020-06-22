@@ -36,7 +36,8 @@ public class Rider {
     @Column(name = "highest_class_allowed")
     private int highestClassAllowed;
 
-    @OneToOne(mappedBy = "rider")
+    //parnet-child association (orphanRemoval)
+    @OneToOne(mappedBy = "rider", orphanRemoval = true)
     private Person person;
 
     @ManyToOne

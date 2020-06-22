@@ -38,7 +38,6 @@ public class Person {
     @JoinColumn(name = "id_owner")
     private Owner owner;
 
-
     @Transient
     public String getName() {
         return getFirstName() + " " + getLastName();

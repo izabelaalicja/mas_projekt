@@ -29,14 +29,9 @@
               method="post"
               class="join-competition">
             <label>Join this competition with: </label>
-            <!--<select th:field="*{horse}">-->
-                <!--<option th:each="horse : ${horses}"-->
-                        <!--th:value="${horse}"-->
-                        <!--th:text="#{${horse}}"></option>-->
-            <!--</select>-->
             <select th:name="newHorse" class="mdb-select md-form">
 
-                <!--<option value=0 disabled selected>Choose a horse</option>-->
+                <option value=0 disabled selected>Choose a horse</option>
                 <option th:each="horse : ${horses}"
                         th:value="${horse.id}"
                         th:text="${horse.name}">
@@ -58,7 +53,6 @@
                     <tr th:each="participation, rowStat: ${participations}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                         <td th:text="${participation.horse.name}"></td>
-                        <!--<td th:text="${participation.rider.person.firstName} + ' ' + ${participation.rider.person.lastName}"></td>-->
                         <td th:text="${participation.rider.person.getName()}"></td>
                     </tr>
                 </tbody>

@@ -53,7 +53,10 @@ public class CompetitionService {
     public void cancel(long idCompetition) {
         competitionRepository
                 .findById(idCompetition)
-                .ifPresent(competition -> competition.setState(CompetitionState.CANCELLED));
+                .ifPresent(competition -> {
+                    competition.setState(CompetitionState.CANCELLED);
+                    competitionRepository.save(competition);
+                });
     }
 
     /**
@@ -63,7 +66,10 @@ public class CompetitionService {
     public void open(long idCompetition) {
         competitionRepository
                 .findById(idCompetition)
-                .ifPresent(competition -> competition.setState(CompetitionState.OPEN));
+                .ifPresent(competition -> {
+                    competition.setState(CompetitionState.OPEN);
+                    competitionRepository.save(competition);
+                });
 
     }
 }

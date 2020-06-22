@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import project.end.mas.exceptions.CantJoinCompetitionException;
 import project.end.mas.exceptions.NoCompetitionException;
 import project.end.mas.enums.Message;
 import project.end.mas.models.Competition;
@@ -51,11 +52,11 @@ public class JoinCompetitionController {
             model.addAttribute("msgCompetitions", Message.COMPETITIONS_NONE.getMessage());
 
         Iterable<Competition> openCompetitions = competitionService.showOpenCompetitions();
-
         Optional<Rider> loggedRider = riderRepository.findById(1L);
-        model.addAttribute("rider", loggedRider.get());
 
+        model.addAttribute("rider", loggedRider.get());
         model.addAttribute("competitions", openCompetitions);
+
         return "competition-list.html";
     }
 
@@ -90,7 +91,10 @@ public class JoinCompetitionController {
      * @return view competition-details.html
      */
     @PostMapping("/competition/{id}")
-    public String joinCompetition(@PathVariable long id, @RequestParam(value = "newHorse", required = false) Long newHorse, RedirectAttributes redirectAttributes) {
+    public String joinCompetition(@PathVariable long id,
+                                  @RequestParam(value = "newHorse", required = false) Long newHorse,
+                                  RedirectAttributes redirectAttributes)
+            throws CantJoinCompetitionException {
 
         redirectAttributes.addFlashAttribute("msg", Message.FAILED_JOIN.getMessage());
         redirectAttributes.addFlashAttribute("alertClass", "alert-error");
