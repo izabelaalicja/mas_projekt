@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class Participation {
 
-    public Participation(Rider rider, Horse horse, Competition competition) {
+    public Participation(@NotNull Rider rider, @NotNull Horse horse, @NotNull Competition competition) {
         this.rider = rider;
         this.horse = horse;
         this.competition = competition;

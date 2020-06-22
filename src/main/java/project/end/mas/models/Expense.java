@@ -14,6 +14,13 @@ import java.time.LocalDate;
 @Setter
 public class Expense {
 
+    public Expense(@NotNull double cost, LocalDate billingDate, @NotNull int number, @NotNull Owner owner) {
+        this.cost = cost;
+        this.billingDate = billingDate;
+        this.number = number;
+        this.owner = owner;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_expense")
@@ -29,6 +36,7 @@ public class Expense {
     @Column(unique = true)
     private int number;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_owner")
     private Owner owner;

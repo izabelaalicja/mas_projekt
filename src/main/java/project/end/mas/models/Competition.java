@@ -19,7 +19,7 @@ import java.util.List;
 @DynamicUpdate
 public class Competition {
 
-    public Competition(String showName, LocalDate startDate, LocalDate endDate, int budget, int numberOfStars, CompetitionState state) {
+    public Competition(@NotNull String showName, @NotNull LocalDate startDate, @NotNull LocalDate endDate, @NotNull int budget, @NotNull @Range(min = 1, max = 4) int numberOfStars, @NotNull CompetitionState state) {
         this.showName = showName;
         this.startDate = startDate;
         this.endDate = endDate;

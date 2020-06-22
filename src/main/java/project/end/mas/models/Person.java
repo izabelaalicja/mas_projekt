@@ -3,6 +3,7 @@ package project.end.mas.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,7 +13,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Setter
+@DynamicUpdate
 public class Person {
+
+    public Person(@NotNull String firstName, @NotNull String lastName, @NotNull String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,11 +15,11 @@ import java.util.List;
 @Setter
 public class Rider {
 
-    public Rider(Person person, int feiId, int highestClassAllowed, RidersClub ridersClub) {
+    public Rider(@NotNull int feiId, @NotNull @Range(min = 1, max = 4) int highestClassAllowed, @NotNull Person person, RidersClub ridersClub) {
         this.feiId = feiId;
         this.highestClassAllowed = highestClassAllowed;
-        this.ridersClub = ridersClub;
         this.person = person;
+        this.ridersClub = ridersClub;
     }
 
     @Id
@@ -37,6 +37,7 @@ public class Rider {
     private int highestClassAllowed;
 
     //parnet-child association (orphanRemoval)
+    @NotNull
     @OneToOne(mappedBy = "rider", orphanRemoval = true)
     private Person person;
 

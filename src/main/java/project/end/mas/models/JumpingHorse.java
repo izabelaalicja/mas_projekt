@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity(name = "jumping_horse")
 @NoArgsConstructor
@@ -13,6 +16,12 @@ import javax.persistence.*;
 @DiscriminatorValue("JUMPING")
 public class JumpingHorse extends Horse {
 
+    public JumpingHorse(@NotNull String name, String nickname, @NotNull LocalDate birthday, @NotNull String color, @NotNull boolean isActive, @NotNull Owner owner, @NotNull float highestJump) {
+        super(name, nickname, birthday, color, isActive, owner);
+        this.highestJump = highestJump;
+    }
+
+    @NotNull
     @Column(name = "highest_jump")
     private float highestJump;
 

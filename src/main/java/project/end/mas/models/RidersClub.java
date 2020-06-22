@@ -14,6 +14,11 @@ import java.util.List;
 @Setter
 public class RidersClub {
 
+    public RidersClub(@NotNull String name, @NotNull String color) {
+        this.name = name;
+        this.color = color;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_riders_club")

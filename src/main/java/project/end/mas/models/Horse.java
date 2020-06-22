@@ -18,6 +18,15 @@ import java.util.List;
 @DiscriminatorColumn(name = "discipline", discriminatorType = DiscriminatorType.STRING)
 public class Horse {
 
+    public Horse(@NotNull String name, String nickname, @NotNull LocalDate birthday, @NotNull String color, @NotNull boolean isActive, @NotNull Owner owner) {
+        this.name = name;
+        this.nickname = nickname;
+        this.birthday = birthday;
+        this.color = color;
+        this.isActive = isActive;
+        this.owner = owner;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_horse")

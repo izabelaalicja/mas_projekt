@@ -8,12 +8,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Entity
+@Entity(name = "training_action")
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "training_action")
 public class TrainingAction {
+
+    public TrainingAction(@NotNull String name, @NotNull int level) {
+        this.name = name;
+        this.level = level;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

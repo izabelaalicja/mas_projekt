@@ -14,6 +14,15 @@ import java.time.LocalDate;
 @Setter
 public class Training {
 
+    public Training(@NotNull LocalDate date, @NotNull boolean isExecuted, @NotNull int priority, @NotNull String description, @NotNull Rider rider, @NotNull Horse horse) {
+        this.date = date;
+        this.isExecuted = isExecuted;
+        this.priority = priority;
+        this.description = description;
+        this.rider = rider;
+        this.horse = horse;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_training")

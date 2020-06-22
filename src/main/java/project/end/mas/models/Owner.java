@@ -12,6 +12,11 @@ import java.util.List;
 @Setter
 public class Owner {
 
+    public Owner(@NotNull String accountNumber, @NotNull Person person) {
+        this.accountNumber = accountNumber;
+        this.person = person;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_owner")
@@ -29,6 +34,7 @@ public class Owner {
     private List<Expense> expenses;
 
     //parnet-child association (orphanRemoval)
+    @NotNull
     @OneToOne(mappedBy = "owner", orphanRemoval = true)
     private Person person;
 
