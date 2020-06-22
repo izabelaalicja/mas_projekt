@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import project.end.mas.enums.CompetitionState;
 import project.end.mas.models.Competition;
 import project.end.mas.repositories.CompetitionRepository;
+import project.end.mas.repositories.ParticipationRepository;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,12 +16,16 @@ import java.util.stream.StreamSupport;
 public class CompetitionService {
 
     private final CompetitionRepository competitionRepository;
+    private final ParticipationRepository participationRepository;
 
     /**
      * <p> method showing all open competitions at the moment/p>
      * @return list of open competitions
      */
     public Iterable<Competition> showOpenCompetitions() {
+        StreamSupport.stream(competitionRepository.findAll().spliterator(), false)
+                .forEach(this::setParticipantsNumber);
+
         return StreamSupport
                 .stream(competitionRepository.findAll().spliterator(), false)
                 .filter(competition -> competition.getState().equals(CompetitionState.OPEN))
@@ -70,6 +75,14 @@ public class CompetitionService {
                     competition.setState(CompetitionState.OPEN);
                     competitionRepository.save(competition);
                 });
+    }
 
+    public void setParticipantsNumber(Competition competition) {
+        int number = StreamSupport
+                .stream(participationRepository.findAll().spliterator(), false)
+                .filter(p -> p.getCompetition().getId() == competition.getId())
+                .collect(Collectors.toList())
+                .size();
+        competition.setParticipantsNumber(number);
     }
 }

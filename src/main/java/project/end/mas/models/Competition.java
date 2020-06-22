@@ -53,6 +53,9 @@ public class Competition {
     @Column(name = "number_of_stars")
     private int numberOfStars;
 
+    @Transient
+    private int participantsNumber;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(255) default 'OPEN'")
